@@ -1,39 +1,38 @@
-def max_crossing_sum(A, low, mid, high):
+def hitung_lintas_maksimum(deret_angka, indeks_awal, indeks_tengah, indeks_akhir):
 
-    sum_left = -float('inf')
-    curr_sum = 0
-    for i in range(mid, low - 1, -1):
-        curr_sum += A[i]
-        if curr_sum > sum_left:
-            sum_left = curr_sum
+    jumlah_kiri = -float('inf')
+    jumlah_saat_ini = 0
+    for i in range(indeks_tengah, indeks_awal - 1, -1):
+        jumlah_saat_ini += deret_angka[i]
+        if jumlah_saat_ini > jumlah_kiri:
+            jumlah_kiri = jumlah_saat_ini
             
-    sum_right = -float('inf')
-    curr_sum = 0
-    for i in range(mid + 1, high + 1):
-        curr_sum += A[i]
-        if curr_sum > sum_right:
-            sum_right = curr_sum
+    jumlah_kanan = -float('inf')
+    jumlah_saat_ini = 0
+    for i in range(indeks_tengah + 1, indeks_akhir + 1):
+        jumlah_saat_ini += deret_angka[i]
+        if jumlah_saat_ini > jumlah_kanan:
+            jumlah_kanan = jumlah_saat_ini
             
-    return sum_left + sum_right
+    return jumlah_kiri + jumlah_kanan
 
-def max_subarray(A, low, high):
-    if low == high:
-        return A[low]
+def cari_subarray_maksimal(deret_angka, indeks_awal, indeks_akhir):
+    if indeks_awal == indeks_akhir:
+        return deret_angka[indeks_awal]
     
-    mid = (low + high) // 2
+    indeks_tengah = (indeks_awal + indeks_akhir) // 2
     
-    left_max = max_subarray(A, low, mid)
-    right_max = max_subarray(A, mid + 1, high)
-    cross_max = max_crossing_sum(A, low, mid, high)
+    maksimum_kiri = cari_subarray_maksimal(deret_angka, indeks_awal, indeks_tengah)
+    maksimum_kanan = cari_subarray_maksimal(deret_angka, indeks_tengah + 1, indeks_akhir)
+    maksimum_lintas = hitung_lintas_maksimum(deret_angka, indeks_awal, indeks_tengah, indeks_akhir)
     
-    return max(left_max, right_max, cross_max)
+    return max(maksimum_kiri, maksimum_kanan, maksimum_lintas)
 
-# Data Uji
-data = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+sampel_data = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
-result = max_subarray(data, 0, len(data) - 1)
+hasil_maksimum = cari_subarray_maksimal(sampel_data, 0, len(sampel_data) - 1)
 
 print("Nama: Raka Restu Saputra")
-print("NIM: 247006111172")
-print(f"Array: {data}")
-print(f"Jumlah Subarray Maksimum: {result}")
+print("NIM: 247006111172 \n")
+print(f"Array: {sampel_data}")
+print(f"Jumlah Subarray Maksimum: {hasil_maksimum}")
