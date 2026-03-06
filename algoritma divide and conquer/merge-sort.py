@@ -1,34 +1,34 @@
-def urutkan_gabung(larik_data):
-    if len(larik_data) <= 1:
-        return larik_data
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
     
-    titik_tengah = len(larik_data) // 2
-    bagian_kiri = urutkan_gabung(larik_data[:titik_tengah])
-    bagian_kanan = urutkan_gabung(larik_data[titik_tengah:])
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
     
-    return gabungkan_bagian(bagian_kiri, bagian_kanan)
+    return merge(left, right)
 
-def gabungkan_bagian(bagian_kiri, bagian_kanan):
-    hasil_gabung = []
-    idx_kiri = idx_kanan = 0
+def merge(left, right):
+    result = []
+    i = j = 0
     
-    while idx_kiri < len(bagian_kiri) and idx_kanan < len(bagian_kanan):
-        if bagian_kiri[idx_kiri] < bagian_kanan[idx_kanan]:
-            hasil_gabung.append(bagian_kiri[idx_kiri])
-            idx_kiri += 1
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
         else:
-            hasil_gabung.append(bagian_kanan[idx_kanan])
-            idx_kanan += 1
+            result.append(right[j])
+            j += 1
             
-    hasil_gabung.extend(bagian_kiri[idx_kiri:])
-    hasil_gabung.extend(bagian_kanan[idx_kanan:])
-    return hasil_gabung
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
 
-data_mentah = [38, 27, 43, 3, 9, 82, 10]
+data = [38, 27, 43, 3, 9, 82, 10]
 
-data_terurut = urutkan_gabung(data_mentah)
+sorted_data = merge_sort(data)
 
 print("Nama: Raka Restu Saputra")
 print("NIM: 247006111172 \n")
-print(f"Data Awal: {data_mentah}")
-print(f"Hasil Sorting: {data_terurut}")
+print(f"Data Awal: {data}")
+print(f"Hasil Sorting: {sorted_data}")
