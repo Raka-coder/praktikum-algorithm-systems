@@ -1,3 +1,6 @@
+print(f"Nama : Raka Restu Saputra")
+print(f"NPM  : 247006111172\n")
+
 def find_max_crossing_subarray(A, low, mid, high):
     left_sum = -float('inf')
     total = 0
@@ -44,8 +47,6 @@ for i in range(1, n + 1):
 
 low_idx, high_idx, max_profit = find_max_subarray(dataset, 0, len(dataset) - 1)
 
-print(f"Nama : Raka Restu Saputra")
-print(f"NPM  : 247006111172\n")
 print(f"a    : {a}, b: {b}, c: {c}")
 print(f"n    : {n} data")
 

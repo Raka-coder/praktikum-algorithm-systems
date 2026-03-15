@@ -1,3 +1,6 @@
+print(f"Nama : Raka Restu Saputra")
+print(f"NPM  : 247006111172\n")
+
 def binary_search_id(data, target):
     low = 0
     high = len(data) - 1
@@ -25,8 +28,6 @@ dataset = [i * (a + 2) + c for i in range(1, n + 1)]
 
 result_idx, history = binary_search_id(dataset, target)
 
-print(f"Nama : Raka Restu Saputra")
-print(f"NPM  : 247006111172\n")
 print(f"a    : {a}, b: {b}, c: {c}")
 print(f"n    : {n} data")
 print(f"Target yang dicari: {target}")
